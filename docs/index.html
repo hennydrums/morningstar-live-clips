@@ -398,12 +398,17 @@
      gestartet. Abschaltbar mit <code>LAUNCH_SKIPPED_TRACKS = False</code>.</p>
 
   <h3>Szenen im Arrangement mitschreiben</h3>
-  <p>Steht der Transport auf <b>REC</b> (Arrangement-Aufnahme), legt das Script am Ende des Sets
-     eine MIDI-Spur <b>„Scene Log“</b> an und startet dort bei jedem Szenenwechsel einen leeren Clip
+  <p>Schaltest du bei stehendem Transport <b>REC</b> ein (Arrangement-Aufnahme), legt das Script am Ende des Sets
+     eine MIDI-Spur <b>„Scene Log“</b> mit einem leeren Clip pro Szene an. Nach dem Start startet es dort bei jedem Szenenwechsel den Clip
      mit dem Szenennamen — genau dann, wenn die neue Szene einsetzt. Live nimmt den Clip wie jeden
      Session-Clip ins Arrangement auf; danach steht dort über die ganze Aufnahme, welche Szene wann
-     lief. Die Spur hat keinen Input und gehört nie zum Aufnahme-Bereich. Abschaltbar unter
-     ⚙ Settings oder mit <code>LOG_SCENES = False</code>.</p>
+     lief. Die Spur hat keinen Input und gehört nie zum Aufnahme-Bereich.
+     Abschaltbar unter ⚙ Settings oder mit <code>LOG_SCENES = False</code>.</p>
+  <p class="note warn"><b>⚠ Mit Ableton Push:</b> Legt ein Script eine Spur an, während das Push-Script läuft,
+     kann Live abstürzen. Lege die Spur deshalb vorher selbst an: eine <b>MIDI-Spur</b> mit dem Namen
+     <b>„Scene Log“</b> (genau so geschrieben) und Input <b>„No Input“</b>. Das Script findet sie am
+     Namen und legt keine neue an. Stürzt Live trotzdem ab, schalte „Log scenes in the arrangement“
+     aus, solange der Push angeschlossen ist.</p>
 
   <h3>Neue Szene, alte aus</h3>
   <p>Startest du mit A eine Aufnahme auf der <b>ersten Spur</b> einer Szene, stoppen alle
@@ -754,12 +759,17 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
      <code>LAUNCH_SKIPPED_TRACKS = False</code>.</p>
 
   <h3>Logging scenes in the arrangement</h3>
-  <p>When the transport is on <b>REC</b> (arrangement recording), the script adds a MIDI track
-     <b>"Scene Log"</b> at the end of the set and, on every scene change, launches an empty clip named
+  <p>When you switch on <b>REC</b> (arrangement recording) while the transport is stopped, the script adds a MIDI track
+     <b>"Scene Log"</b> with one empty clip per scene at the end of the set. After Start, on every scene change it launches the clip named
      after the scene there — right when the new scene starts. Live records it into the arrangement
      like any session clip, so afterwards the arrangement shows which scene played when. The track
      has no input and is never part of the recording range. Turn it off under ⚙ Settings or with
      <code>LOG_SCENES = False</code>.</p>
+  <p class="note warn"><b>⚠ With an Ableton Push:</b> if a script creates a track while the Push script is running,
+     Live can crash. So create the track yourself beforehand: a <b>MIDI track</b> named
+     <b>"Scene Log"</b> (spelled exactly like that) with input <b>"No Input"</b>. The script finds it by
+     name and creates no new one. If Live still crashes, switch off "Log scenes in the arrangement"
+     while the Push is connected.</p>
 
   <h3>New scene, old one off</h3>
   <p>When you start a recording with A on the <b>first track</b> of a scene, all clips
