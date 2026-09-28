@@ -395,6 +395,14 @@
      starten sie zusammen mit der ersten Aufnahme der Szene. Gruppen-Spuren werden nicht
      gestartet. Abschaltbar mit <code>LAUNCH_SKIPPED_TRACKS = False</code>.</p>
 
+  <h3>Szenen im Arrangement mitschreiben</h3>
+  <p>Steht der Transport auf <b>REC</b> (Arrangement-Aufnahme), legt das Script am Ende des Sets
+     eine MIDI-Spur <b>„Scene Log“</b> an und startet dort bei jedem Szenenwechsel einen leeren Clip
+     mit dem Szenennamen — genau dann, wenn die neue Szene einsetzt. Live nimmt den Clip wie jeden
+     Session-Clip ins Arrangement auf; danach steht dort über die ganze Aufnahme, welche Szene wann
+     lief. Die Spur hat keinen Input und gehört nie zum Aufnahme-Bereich. Abschaltbar unter
+     ⚙ Settings oder mit <code>LOG_SCENES = False</code>.</p>
+
   <h3>Neue Szene, alte aus</h3>
   <p>Startest du mit A eine Aufnahme auf der <b>ersten Spur</b> einer Szene, stoppen alle
      Clips, die noch in anderen Szenen laufen — quantisiert, also genau dann, wenn die
@@ -451,9 +459,10 @@
       <tr><td><b>Disarm previous track</b></td><td>Nach dem Weiterspringen wird die Spur, auf der gerade aufgenommen wurde, entarmt — sobald ihre Aufnahme beendet ist</td><td><code>DISARM_ON_ADVANCE</code></td></tr>
       <tr><td><b>New scene stops the old one</b></td><td>Die erste Aufnahme einer Szene stoppt die Clips anderer Szenen im Aufnahme-Bereich — quantisiert, genau zum Einsatz</td><td><code>STOP_OTHER_SCENES_ON_FIRST_RECORD</code></td></tr>
       <tr><td><b>Launch tracks without input</b></td><td>Übersprungene Spuren ohne Input (z. B. vorbereitete Loops) starten ihren Clip beim Weiterspringen mit</td><td><code>LAUNCH_SKIPPED_TRACKS</code></td></tr>
+      <tr><td><b>Log scenes in the arrangement</b></td><td>Läuft die Arrangement-Aufnahme (REC), startet bei jedem Szenenwechsel auf der MIDI-Spur „Scene Log“ ein Clip mit dem Szenennamen — Live nimmt ihn mit auf. So steht im Arrangement, welche Szene wann lief</td><td><code>LOG_SCENES</code></td></tr>
     </tbody>
   </table></div>
-  <p>Alle drei sind ab Werk an. Die Werte im Script gelten nur, solange im Browser noch nichts umgeschaltet wurde.</p>
+  <p>Alle sind ab Werk an. Die Werte im Script gelten nur, solange im Browser noch nichts umgeschaltet wurde.</p>
   <p>Das Script schickt seinen Zustand per UDP an Port 11007 und nimmt Befehle auf 11008
      an. Abschalten mit <code>WEB_ENABLED = False</code>.</p>
 </section>
@@ -740,6 +749,14 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
      scene's first recording. Group tracks are not launched. Turn it off with
      <code>LAUNCH_SKIPPED_TRACKS = False</code>.</p>
 
+  <h3>Logging scenes in the arrangement</h3>
+  <p>When the transport is on <b>REC</b> (arrangement recording), the script adds a MIDI track
+     <b>"Scene Log"</b> at the end of the set and, on every scene change, launches an empty clip named
+     after the scene there — right when the new scene starts. Live records it into the arrangement
+     like any session clip, so afterwards the arrangement shows which scene played when. The track
+     has no input and is never part of the recording range. Turn it off under ⚙ Settings or with
+     <code>LOG_SCENES = False</code>.</p>
+
   <h3>New scene, old one off</h3>
   <p>When you start a recording with A on the <b>first track</b> of a scene, all clips
      still playing in other scenes stop — quantized, i.e. exactly when the new recording
@@ -794,9 +811,10 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
       <tr><td><b>Disarm previous track</b></td><td>After moving on, the track you just recorded on is disarmed — once its recording has ended</td><td><code>DISARM_ON_ADVANCE</code></td></tr>
       <tr><td><b>New scene stops the old one</b></td><td>The first recording of a scene stops clips of other scenes inside the recording range — quantized, right on the downbeat</td><td><code>STOP_OTHER_SCENES_ON_FIRST_RECORD</code></td></tr>
       <tr><td><b>Launch tracks without input</b></td><td>Skipped tracks without input (e.g. prepared loops) launch their clip along when moving on</td><td><code>LAUNCH_SKIPPED_TRACKS</code></td></tr>
+      <tr><td><b>Log scenes in the arrangement</b></td><td>While arrangement recording (REC) runs, every scene change starts a clip named after the scene on the MIDI track "Scene Log" — Live records it along, so the arrangement shows which scene played when</td><td><code>LOG_SCENES</code></td></tr>
     </tbody>
   </table></div>
-  <p>All three are on by default. The values in the script only apply until something has been switched in the browser.</p>
+  <p>All are on by default. The values in the script only apply until something has been switched in the browser.</p>
   <p>The script sends its state via UDP to port 11007 and receives commands on 11008.
      Turn it off with <code>WEB_ENABLED = False</code>.</p>
 </section>
