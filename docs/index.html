@@ -466,6 +466,7 @@
       <tr><td><b>Disarm previous track</b></td><td>Nach dem Weiterspringen wird die Spur, auf der gerade aufgenommen wurde, entarmt — sobald ihre Aufnahme beendet ist</td><td><code>DISARM_ON_ADVANCE</code></td></tr>
       <tr><td><b>New scene stops the old one</b></td><td>Die erste Aufnahme einer Szene stoppt die Clips anderer Szenen im Aufnahme-Bereich — quantisiert, genau zum Einsatz</td><td><code>STOP_OTHER_SCENES_ON_FIRST_RECORD</code></td></tr>
       <tr><td><b>Launch tracks without input</b></td><td>Übersprungene Spuren ohne Input (z. B. vorbereitete Loops) starten ihren Clip beim Weiterspringen mit</td><td><code>LAUNCH_SKIPPED_TRACKS</code></td></tr>
+      <tr><td><b>Show MC6 Pro and overview</b></td><td>Aus: das Script baut MC6-Ansicht und Overview im Browser gar nicht erst auf — spart Rechenleistung in Live (hilfreich auf knappen Rechnern, wenn Aufnahmen knacken). Das MC6 Pro mit seinen Displays und die Transport-Leiste arbeiten normal weiter. Während einer Aufnahme wird die Overview ohnehin nur einmal pro Sekunde aktualisiert</td><td><code>SHOW_BOARD</code></td></tr>
       <tr><td><b>Log scenes in the arrangement</b></td><td>Läuft die Arrangement-Aufnahme (REC), startet bei jedem Szenenwechsel auf der MIDI-Spur „Scene Log“ ein Clip mit dem Szenennamen — Live nimmt ihn mit auf. So steht im Arrangement, welche Szene wann lief</td><td><code>LOG_SCENES</code></td></tr>
     </tbody>
   </table></div>
@@ -825,6 +826,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
       <tr><td><b>Disarm previous track</b></td><td>After moving on, the track you just recorded on is disarmed — once its recording has ended</td><td><code>DISARM_ON_ADVANCE</code></td></tr>
       <tr><td><b>New scene stops the old one</b></td><td>The first recording of a scene stops clips of other scenes inside the recording range — quantized, right on the downbeat</td><td><code>STOP_OTHER_SCENES_ON_FIRST_RECORD</code></td></tr>
       <tr><td><b>Launch tracks without input</b></td><td>Skipped tracks without input (e.g. prepared loops) launch their clip along when moving on</td><td><code>LAUNCH_SKIPPED_TRACKS</code></td></tr>
+      <tr><td><b>Show MC6 Pro and overview</b></td><td>Off: the script doesn't build the MC6 view and overview for the browser at all — saves CPU in Live (helpful on tight machines when recordings crackle). The MC6 Pro with its displays and the transport bar keep working. While recording, the overview only updates once per second anyway</td><td><code>SHOW_BOARD</code></td></tr>
       <tr><td><b>Log scenes in the arrangement</b></td><td>While arrangement recording (REC) runs, every scene change starts a clip named after the scene on the MIDI track "Scene Log" — Live records it along, so the arrangement shows which scene played when</td><td><code>LOG_SCENES</code></td></tr>
     </tbody>
   </table></div>
