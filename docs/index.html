@@ -290,7 +290,7 @@
     <li>Unter <b>Controller Settings → MIDI Channel</b> Kanal <b>1</b> einstellen (Empfang für LEDs und Displays).</li>
   </ol>
 
-  <div class="board" role="img" aria-label="MC6 Pro Belegung: oben D Start Szene, E Szene hoch, F Stop Szene; unten A Record/Play, B Szene runter, C Stop Spur">
+  <div class="board" role="img" aria-label="MC6 Pro Belegung: oben D Start Szene, E Szene hoch, F Stop Szene; unten A Record/Play, B nächste Szene, C Stop Spur">
     <div class="row">
       <div class="sw"><i></i>D</div><div class="sw"><i></i>E</div><div class="sw"><i></i>F</div>
     </div>
@@ -319,7 +319,7 @@
           <tr><td><b>E</b></td><td>Szene hoch · CC 20 · Press</td><td class="dim">–</td><td class="dim">aus</td></tr>
           <tr><td><b>F</b></td><td>Stop Szene · CC 34 · Release</td><td>Spur rechts · CC 23</td><td class="dim">aus</td></tr>
           <tr><td><b>A</b></td><td>Record / Play · CC 25 · Release</td><td>Letzte Aufnahme löschen · CC 31</td><td>an · Position 2 rot</td></tr>
-          <tr><td><b>B</b></td><td>Szene runter · CC 21 · Release</td><td>Nächste Szene, erste Spur · CC 32</td><td class="dim">aus</td></tr>
+          <tr><td><b>B</b></td><td>Nächste Szene, erste Spur · CC 21 · Release</td><td>Clips 2 Szenen tiefer kopieren · CC 32</td><td class="dim">aus</td></tr>
           <tr><td><b>C</b></td><td>Stop Spur · CC 27 · Release</td><td>Transport stoppen · CC 35</td><td>an · Position 2 grün</td></tr>
         </tbody>
       </table></div>
@@ -344,13 +344,14 @@
     <li><b>D — START SCENE</b><span>startet die ausgewählte Szene im Aufnahme-Bereich: Clips der Szene starten, Spuren mit leerem Slot stoppen</span></li>
     <li><b>F — STOP SCENE</b><span>stoppt die Clips der ausgewählten Szene im Aufnahme-Bereich</span></li>
     <li><b>D / F lang drücken</b><span>Spur links / rechts</span></li>
-    <li><b>E / B</b><span>Szene hoch / runter</span></li>
+    <li><b>E</b><span>Szene hoch</span></li>
+    <li><b>B</b><span>nächste Szene, auf die erste Spur im Aufnahme-Bereich</span></li>
     <li><b>A — RECORD</b><span>leerer Slot: Spur wird scharfgeschaltet, Aufnahme startet</span></li>
     <li><b>A — während der Aufnahme</b><span>Aufnahme endet, der Clip spielt, die Auswahl springt zur nächsten Spur</span></li>
     <li><b>A — PLAY</b><span>gestoppter Clip im Slot: Clip startet, die Auswahl springt zur nächsten Spur</span></li>
     <li><b>C</b><span>stoppt die Clips der ausgewählten Spur</span></li>
     <li><b>A lang drücken</b><span>löscht rückwärts die letzte Aufnahme und wählt ihren Slot wieder aus — jeder weitere lange Druck löscht eine weiter zurück, Spuren ohne Input bleiben unberührt</span></li>
-    <li><b>B lang drücken</b><span>nächste Szene, erste Spur links</span></li>
+    <li><b>B lang drücken</b><span>die aufgenommenen Clips der Szene zwei Szenen tiefer kopieren (siehe unten)</span></li>
     <li><b>C lang drücken</b><span>stoppt den Transport von Live — und damit alles</span></li>
   </ul>
   <p>Aufnahmestart und -ende folgen Lives Clip-Quantisierung. Die Auswahl springt
@@ -375,8 +376,15 @@
   <p>Das gilt auch, wenn du die Aufnahme anders beendest, etwa am <b>Push</b> oder mit der Maus:
      Steht die Auswahl noch auf dem Slot, der gerade aufgenommen hat, springt sie genauso weiter.</p>
   <p>Die Spur, auf der gerade aufgenommen wurde, wird dabei wieder <b>entarmt</b> —
-     sobald ihre Aufnahme wirklich beendet ist, also nach dem Quantisierungspunkt.
-     Dasselbe gilt beim Sprung mit B lang in die nächste Szene.</p>
+     sobald ihre Aufnahme wirklich beendet ist, also nach dem Quantisierungspunkt.</p>
+
+  <h3>Szene zwei Szenen tiefer kopieren</h3>
+  <p><b>B lang drücken</b> kopiert die aufgenommenen Clips der ausgewählten Szene — alle Spuren mit
+     Input im Aufnahme-Bereich (<code>&gt;</code> … <code>&lt;</code>) — <b>zwei Szenen tiefer</b>. Fehlen
+     unten Szenen, legt das Script sie an. Schon belegte Ziel-Slots bleiben unberührt, Spuren ohne Input
+     und Spuren außerhalb des Bereichs auch. Das Script erledigt alles nacheinander mit kurzen Pausen
+     (mit angeschlossenem Push ist das sicherer); Live meldet am Ende, wie viele Clips kopiert wurden.
+     Wie weit kopiert wird, steht in <code>COPY_SCENES_DOWN</code>.</p>
 
   <h3>Aufnahme-Bereich festlegen</h3>
   <p>Liegen im Set Spuren, die nichts mit den Aufnahmen zu tun haben (Click, Zuspieler,
@@ -484,7 +492,7 @@
     <thead><tr><th>CC</th><th>Funktion</th></tr></thead>
     <tbody>
       <tr><td class="num">20</td><td>Szene hoch</td></tr>
-      <tr><td class="num">21</td><td>Szene runter</td></tr>
+      <tr><td class="num">21</td><td>Nächste Szene, erste Spur im Aufnahme-Bereich</td></tr>
       <tr><td class="num">22</td><td>Spur links</td></tr>
       <tr><td class="num">23</td><td>Spur rechts</td></tr>
       <tr><td class="num">24</td><td>Arm an/aus (beachtet „Exklusiv-Arm")</td></tr>
@@ -495,7 +503,7 @@
       <tr><td class="num">29</td><td>Undo</td></tr>
       <tr><td class="num">30</td><td>Clip im ausgewählten Slot löschen</td></tr>
       <tr><td class="num">31</td><td>Letzte Aufnahme löschen</td></tr>
-      <tr><td class="num">32</td><td>Nächste Szene, erste Spur</td></tr>
+      <tr><td class="num">32</td><td>Clips der Szene 2 Szenen tiefer kopieren</td></tr>
       <tr><td class="num">33</td><td>Szene starten (im Aufnahme-Bereich)</td></tr>
       <tr><td class="num">34</td><td>Szene stoppen (im Aufnahme-Bereich)</td></tr>
       <tr><td class="num">35</td><td>Transport stoppen</td></tr>
@@ -652,7 +660,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
     <li>Under <b>Controller Settings → MIDI Channel</b>, set channel <b>1</b> (receive channel for LEDs and displays).</li>
   </ol>
 
-  <div class="board" role="img" aria-label="MC6 Pro layout: top D start scene, E scene up, F stop scene; bottom A record/play, B scene down, C stop track">
+  <div class="board" role="img" aria-label="MC6 Pro layout: top D start scene, E scene up, F stop scene; bottom A record/play, B next scene, C stop track">
     <div class="row">
       <div class="sw"><i></i>D</div><div class="sw"><i></i>E</div><div class="sw"><i></i>F</div>
     </div>
@@ -681,7 +689,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
           <tr><td><b>E</b></td><td>Scene up · CC 20 · Press</td><td class="dim">–</td><td class="dim">off</td></tr>
           <tr><td><b>F</b></td><td>Stop scene · CC 34 · Release</td><td>Track right · CC 23</td><td class="dim">off</td></tr>
           <tr><td><b>A</b></td><td>Record / Play · CC 25 · Release</td><td>Delete last take · CC 31</td><td>on · position 2 red</td></tr>
-          <tr><td><b>B</b></td><td>Scene down · CC 21 · Release</td><td>Next scene, first track · CC 32</td><td class="dim">off</td></tr>
+          <tr><td><b>B</b></td><td>Next scene, first track · CC 21 · Release</td><td>Copy clips 2 scenes down · CC 32</td><td class="dim">off</td></tr>
           <tr><td><b>C</b></td><td>Stop track · CC 27 · Release</td><td>Stop transport · CC 35</td><td>on · position 2 green</td></tr>
         </tbody>
       </table></div>
@@ -706,13 +714,14 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
     <li><b>D — START SCENE</b><span>launches the selected scene inside the recording range: the scene's clips start, tracks with an empty slot stop</span></li>
     <li><b>F — STOP SCENE</b><span>stops the selected scene's clips inside the recording range</span></li>
     <li><b>D / F long press</b><span>track left / right</span></li>
-    <li><b>E / B</b><span>scene up / down</span></li>
+    <li><b>E</b><span>scene up</span></li>
+    <li><b>B</b><span>next scene, onto the first track in the recording range</span></li>
     <li><b>A — RECORD</b><span>empty slot: the track gets armed and recording starts</span></li>
     <li><b>A — while recording</b><span>recording ends, the clip plays, the selection jumps to the next track</span></li>
     <li><b>A — PLAY</b><span>stopped clip in the slot: the clip starts, the selection jumps to the next track</span></li>
     <li><b>C</b><span>stops the clips on the selected track</span></li>
     <li><b>A long press</b><span>deletes the last take backwards and selects its slot again — each further long press goes one further back; tracks without input are never touched</span></li>
-    <li><b>B long press</b><span>next scene, first track on the left</span></li>
+    <li><b>B long press</b><span>copy the recorded clips of the scene two scenes down (see below)</span></li>
     <li><b>C long press</b><span>stops Live's transport — and with it everything</span></li>
   </ul>
   <p>Recording start and end follow Live's clip launch quantization. The selection
@@ -738,8 +747,15 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
   <p>This also works when you end the recording some other way, e.g. on a <b>Push</b> or with the mouse:
      if the selection is still on the slot that just recorded, it jumps on the same way.</p>
   <p>The track you just recorded on gets <b>disarmed</b> again — as soon as its
-     recording has really ended, i.e. after the quantization point. The same applies
-     when jumping to the next scene with a long press on B.</p>
+     recording has really ended, i.e. after the quantization point.</p>
+
+  <h3>Copying a scene two scenes down</h3>
+  <p><b>Long press on B</b> copies the recorded clips of the selected scene — all tracks with an input
+     inside the recording range (<code>&gt;</code> … <code>&lt;</code>) — <b>two scenes down</b>. If scenes
+     are missing at the bottom, the script adds them. Target slots that already hold a clip stay untouched,
+     and so do tracks without an input and tracks outside the range. The script does everything one step
+     at a time with short pauses (safer with a Push connected); Live reports how many clips were copied.
+     How far it copies is set by <code>COPY_SCENES_DOWN</code>.</p>
 
   <h3>Setting the recording range</h3>
   <p>If your set has tracks that have nothing to do with the recordings (click, backing
@@ -844,7 +860,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
     <thead><tr><th>CC</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td class="num">20</td><td>Scene up</td></tr>
-      <tr><td class="num">21</td><td>Scene down</td></tr>
+      <tr><td class="num">21</td><td>Next scene, first track in the recording range</td></tr>
       <tr><td class="num">22</td><td>Track left</td></tr>
       <tr><td class="num">23</td><td>Track right</td></tr>
       <tr><td class="num">24</td><td>Arm on/off (respects "Exclusive Arm")</td></tr>
@@ -855,7 +871,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
       <tr><td class="num">29</td><td>Undo</td></tr>
       <tr><td class="num">30</td><td>Delete clip in the selected slot</td></tr>
       <tr><td class="num">31</td><td>Delete last take</td></tr>
-      <tr><td class="num">32</td><td>Next scene, first track</td></tr>
+      <tr><td class="num">32</td><td>Copy the scene's clips 2 scenes down</td></tr>
       <tr><td class="num">33</td><td>Start scene (inside the recording range)</td></tr>
       <tr><td class="num">34</td><td>Stop scene (inside the recording range)</td></tr>
       <tr><td class="num">35</td><td>Stop transport</td></tr>
