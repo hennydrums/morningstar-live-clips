@@ -232,15 +232,15 @@
      als ZIP laden (unter „Assets“, nicht „Source code“), entpacken und im Terminal im Ordner
      <code>sh install.sh</code> ausführen — das kopiert das Remote Script an die richtige Stelle.
      Danach geht es mit „Live einrichten" weiter.</p>
-  <p class="note">🎛 <b>Mit LooperDisplay:</b> <a href="https://github.com/hennydrums/looper-display/releases/latest" target="_blank" rel="noopener">LooperDisplay</a>
+  <p class="note">🎛 <b>Mit LooperPilot:</b> <a href="https://github.com/LooperPilot/looper-pilot/releases/latest" target="_blank" rel="noopener">LooperPilot</a>
      bringt MorningstarClips gleich mit — dessen <code>./install.sh --with-clips</code> installiert
      das Script, die MC6-Pro-Bank liegt im Download unter <code>Presets/Morningstar MC6 Pro</code>.</p>
 
   <h3>Vorlage für Live</h3>
-  <p><a href="https://github.com/hennydrums/looper-display/releases/latest"><code>MorningStarTemplate.als</code></a> ist ein fertig eingerichtetes Live-Set zum
+  <p><a href="https://github.com/LooperPilot/looper-pilot/releases/latest"><code>MorningStarTemplate.als</code></a> ist ein fertig eingerichtetes Live-Set zum
      Ausprobieren und Weiterbauen: Aufnahme-Bereich von <code>&gt; Guit</code> bis <code>Drums &lt;</code>,
-     eine Spur ohne Input dazwischen, eine Looper-Gruppe für LooperDisplay und je ein Reverb- und
-     Delay-Return. Sie liegt dem LooperDisplay-Download bei; <code>./install.sh --with-clips</code> legt sie nach
+     eine Spur ohne Input dazwischen, eine Looper-Gruppe für LooperPilot und je ein Reverb- und
+     Delay-Return. Sie liegt dem LooperPilot-Download bei; <code>./install.sh --with-clips</code> legt sie nach
      <code>~/Music/Ableton/User Library/Templates</code> — dann steht sie in Live im Browser unter
      <b>Vorlagen</b>. Eine vorhandene Datei gleichen Namens wird nicht überschrieben.</p>
   <p class="note">Die Drum-Sounds kommen aus dem Ableton-Pack <b>Drum Booth</b>. Fehlt es, bietet Live an,
@@ -452,7 +452,7 @@
 <section id="browser-de">
   <p class="eyebrow">Ohne Fußschalter</p>
   <h2>Im Browser steuern</h2>
-  <p>Zusammen mit <a href="https://github.com/hennydrums/looper-display/releases/latest" target="_blank" rel="noopener">LooperDisplay</a> (ab 1.8)
+  <p>Zusammen mit <a href="https://github.com/LooperPilot/looper-pilot/releases/latest" target="_blank" rel="noopener">LooperPilot</a> (ab 1.8)
      gibt es das MC6 Pro auch im Browser — auf dem Mac oder auf einem Tablet im selben
      WLAN. Die Seite <code>/clips</code> (in der Looper-Anzeige oben „🎛 Clips") zeigt die
      sechs Schalter mit Spur, Szene und RECORD/PLAY, kurz und lang tippen wie am Gerät.
@@ -461,7 +461,7 @@
   <img class="hero-shot" src="clips-view.png" width="1398" height="481" loading="lazy" alt="Die Clips-Seite im Browser: links das nachgebildete MC6 Pro mit Start/Stop Scene, Spur claps, Szene 3 und RECORD, rechts die Übersicht mit Clip-Namen, den Knöpfen für den Aufnahme-Bereich und einer schraffierten Spur ohne Input">
   <p class="board-cap">Die Clips-Seite: links das MC6 Pro, rechts die Übersicht — die hellen Linien markieren den Aufnahme-Bereich von „&gt;“ bis „&lt;“.</p>
   <ul class="keys">
-    <li><b>Voraussetzung</b><span>LooperDisplay läuft auf demselben Mac wie Live, MorningstarClips ist als Bedienoberfläche gewählt</span></li>
+    <li><b>Voraussetzung</b><span>LooperPilot läuft auf demselben Mac wie Live, MorningstarClips ist als Bedienoberfläche gewählt</span></li>
     <li><b>Adresse</b><span><code>http://localhost:8080/clips</code>, fürs Tablet die Adresse unter „📱 Tablet" plus <code>/clips</code></span></li>
     <li><b>Parallel</b><span>MC6 Pro und Browser dürfen gleichzeitig laufen, beide steuern dasselbe Script</span></li>
     <li><b>Aufnahme-Bereich</b><span>Spur antippen, dann <b>„&gt; Start here“</b> oder <b>„End here &lt;“</b> — das Script setzt <code>&gt;</code> bzw. <code>&lt;</code> in den Spurnamen und entfernt es bei der bisherigen Spur (in Live mit Undo umkehrbar)</span></li>
@@ -537,8 +537,8 @@ STOP_OTHER_SCENES_ON_FIRST_RECORD = True  # Aufnahme auf erster Spur stoppt ande
 LAUNCH_SKIPPED_TRACKS = True   # übersprungene Spuren ohne Input mitstarten
 RANGE_START = '>'              # Zeichen für die erste Spur im Aufnahme-Bereich
 RANGE_END = '<'                # Zeichen für die letzte Spur
-WEB_ENABLED = True             # Zustand an LooperDisplay senden (Browser-Ansicht)
-WEB_STATE_PORT = 11007         # Zustand an den LooperDisplay-Server
+WEB_ENABLED = True             # Zustand an LooperPilot senden (Browser-Ansicht)
+WEB_STATE_PORT = 11007         # Zustand an den LooperPilot-Server
 WEB_COMMAND_PORT = 11008       # Befehle aus dem Browser
 SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</pre>
   <p>Nach einer Änderung <code>./install.sh</code> erneut ausführen und Live neu starten.</p>
@@ -552,7 +552,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
     <li><b>Tritte bewirken nichts</b><span>Eingang im Slot prüfen; sendet das MC6 Pro auf Kanal 1?</span></li>
     <li><b>LEDs reagieren nicht</b><span>Ausgang im Slot, MIDI Channel am MC6 Pro und Toggle Mode bei A und C prüfen</span></li>
     <li><b>Keine Namen im Display</b><span>Ausgang im Slot prüfen; beim MC8 Pro <code>MC_DEVICE_ID = 0x08</code> setzen</span></li>
-    <li><b>Clips-Seite: „not connected"</b><span>LooperDisplay ab 1.8 läuft auf demselben Mac, MorningstarClips ab 1.1.1 ist in Live gewählt? Live nach einem Script-Update neu starten</span></li>
+    <li><b>Clips-Seite: „not connected"</b><span>LooperPilot ab 1.8 läuft auf demselben Mac, MorningstarClips ab 1.1.1 ist in Live gewählt? Live nach einem Script-Update neu starten</span></li>
     <li><b>Fehlermeldungen</b><span>in <code>~/Library/Preferences/Ableton/Live &lt;Version&gt;/Log.txt</code> nach „MorningstarClips" suchen</span></li>
   </ul>
 </section>
@@ -604,15 +604,15 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
   <p class="note ok">🔒 <b>Testing phase:</b> the releases are in the private repo <b>LooperPilot/morningstar-live-clips</b> — access on request. With access: download the <a href="https://github.com/LooperPilot/morningstar-live-clips/releases/latest" target="_blank" rel="noopener">latest release</a>
      as a ZIP (under "Assets", not "Source code"), unpack it and run <code>sh install.sh</code> in that
      folder in Terminal — it copies the Remote Script to the right place. Then continue with "Live setup".</p>
-  <p class="note">🎛 <b>With LooperDisplay:</b> <a href="https://github.com/hennydrums/looper-display/releases/latest" target="_blank" rel="noopener">LooperDisplay</a>
+  <p class="note">🎛 <b>With LooperPilot:</b> <a href="https://github.com/LooperPilot/looper-pilot/releases/latest" target="_blank" rel="noopener">LooperPilot</a>
      ships MorningstarClips too — its <code>./install.sh --with-clips</code> installs the script, and
      the MC6 Pro bank is in the download under <code>Presets/Morningstar MC6 Pro</code>.</p>
 
   <h3>Template for Live</h3>
-  <p><a href="https://github.com/hennydrums/looper-display/releases/latest"><code>MorningStarTemplate.als</code></a> is a ready-made Live set to try things out and
+  <p><a href="https://github.com/LooperPilot/looper-pilot/releases/latest"><code>MorningStarTemplate.als</code></a> is a ready-made Live set to try things out and
      build on: a recording range from <code>&gt; Guit</code> to <code>Drums &lt;</code>, a track without input
-     in between, a looper group for LooperDisplay and a reverb and a delay return. It comes with the
-     LooperDisplay download; <code>./install.sh --with-clips</code> puts it in
+     in between, a looper group for LooperPilot and a reverb and a delay return. It comes with the
+     LooperPilot download; <code>./install.sh --with-clips</code> puts it in
      <code>~/Music/Ableton/User Library/Templates</code> — then it shows up in Live's browser under
      <b>Templates</b>. An existing file with the same name is never overwritten.</p>
   <p class="note">The drum sounds come from Ableton's <b>Drum Booth</b> pack. If it's missing, Live offers to
@@ -821,7 +821,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
 <section id="browser-en">
   <p class="eyebrow">No foot controller needed</p>
   <h2>Control from the browser</h2>
-  <p>Together with <a href="https://github.com/hennydrums/looper-display/releases/latest" target="_blank" rel="noopener">LooperDisplay</a> (1.8 or newer)
+  <p>Together with <a href="https://github.com/LooperPilot/looper-pilot/releases/latest" target="_blank" rel="noopener">LooperPilot</a> (1.8 or newer)
      the MC6 Pro is also available in the browser — on the Mac or on a tablet on the same
      Wi-Fi. The page <code>/clips</code> ("🎛 Clips" at the top of the looper display) shows
      the six switches with track, scene and RECORD/PLAY; short and long taps work like on
@@ -830,7 +830,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
   <img class="hero-shot" src="clips-view.png" width="1398" height="481" loading="lazy" alt="The Clips page in the browser: on the left the virtual MC6 Pro with start/stop scene, track claps, scene 3 and RECORD, on the right the overview with clip names, the recording range buttons and a hatched track without input">
   <p class="board-cap">The Clips page: the MC6 Pro on the left, the overview on the right — the light lines mark the recording range from "&gt;" to "&lt;".</p>
   <ul class="keys">
-    <li><b>Requirement</b><span>LooperDisplay runs on the same Mac as Live, MorningstarClips is selected as a control surface</span></li>
+    <li><b>Requirement</b><span>LooperPilot runs on the same Mac as Live, MorningstarClips is selected as a control surface</span></li>
     <li><b>Address</b><span><code>http://localhost:8080/clips</code>; on a tablet, the address under "📱 Tablet" plus <code>/clips</code></span></li>
     <li><b>Side by side</b><span>MC6 Pro and browser can run at the same time, both drive the same script</span></li>
     <li><b>Recording range</b><span>tap a track, then <b>"&gt; Start here"</b> or <b>"End here &lt;"</b> — the script puts <code>&gt;</code> or <code>&lt;</code> into the track name and removes it from the previous track (undoable in Live)</span></li>
@@ -906,8 +906,8 @@ STOP_OTHER_SCENES_ON_FIRST_RECORD = True  # recording on the first track stops o
 LAUNCH_SKIPPED_TRACKS = True   # launch skipped tracks without input
 RANGE_START = '>'              # mark for the first track of the recording range
 RANGE_END = '<'                # mark for the last track
-WEB_ENABLED = True             # send state to LooperDisplay (browser view)
-WEB_STATE_PORT = 11007         # state to the LooperDisplay server
+WEB_ENABLED = True             # send state to LooperPilot (browser view)
+WEB_STATE_PORT = 11007         # state to the LooperPilot server
 WEB_COMMAND_PORT = 11008       # commands from the browser
 SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</pre>
   <p>After a change, run <code>./install.sh</code> again and restart Live.</p>
@@ -921,7 +921,7 @@ SETTINGS_FILE = '~/Library/Application Support/MorningstarClips/settings.json'</
     <li><b>Presses do nothing</b><span>check the input in the slot; is the MC6 Pro sending on channel 1?</span></li>
     <li><b>LEDs don't react</b><span>check the output in the slot, the MC6 Pro's MIDI channel and toggle mode on A and C</span></li>
     <li><b>No names on the display</b><span>check the output in the slot; for an MC8 Pro set <code>MC_DEVICE_ID = 0x08</code></span></li>
-    <li><b>Clips page: "not connected"</b><span>is LooperDisplay 1.8+ running on the same Mac and MorningstarClips 1.1.1+ selected in Live? Restart Live after updating the script</span></li>
+    <li><b>Clips page: "not connected"</b><span>is LooperPilot 1.8+ running on the same Mac and MorningstarClips 1.1.1+ selected in Live? Restart Live after updating the script</span></li>
     <li><b>Error messages</b><span>search <code>~/Library/Preferences/Ableton/Live &lt;version&gt;/Log.txt</code> for "MorningstarClips"</span></li>
   </ul>
 </section>
